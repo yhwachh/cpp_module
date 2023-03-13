@@ -27,23 +27,18 @@ void    Phonebook::search_contact()
         i++;
         this->_index2++;
     }
-    std::cout << "you index ? : ";
-    std::getline(std::cin, command);
-    j = std::stoi(command);
     while(42)
     {
-        if(j >= 1 && j <= 8 && j <= this->_size)
+        std::cout << "you index ? : ";
+        std::getline(std::cin, command);
+        if(std::isdigit(command[0]))
         {
-            this->_contact[this->_index2 = j - 1].wr_contact();
-            break;
-        }
-        else
-        {
-            std::cout << "try again : " << std::endl;
-            std::cout << "you index ? : ";
-            std::getline(std::cin, command);
             j = std::stoi(command);
-
+            if(j >= 1 && j <= 8 && j <= this->_size)
+            {
+                this->_contact[this->_index2 = j - 1].wr_contact();
+                break;
+            }
         }
     }
 

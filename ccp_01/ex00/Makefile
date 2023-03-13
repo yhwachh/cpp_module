@@ -1,26 +1,19 @@
-NAME	= BraiiiiiiinnnzzzZ
-CC		= g++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS	= $(wildcard *.cpp)
+SRC = Zombie.cpp main.cpp newZombie.cpp randomChump.cpp
+EXEC = Zombie
 
-OBJDIR	= obj
-OBJS	= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
+all: $(EXEC)
 
-all: $(NAME)
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-
-$(OBJDIR)/%.o: %.cpp
-	@mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	@rm -rf $(OBJDIR)
+$(EXEC): $(SRC)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f Zombie
+
+clean:
+	rm -f $(EXEC)
 
 re: fclean all
 
