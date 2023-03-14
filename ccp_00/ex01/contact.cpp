@@ -25,6 +25,8 @@ void    Contact::save_contact(int i)
     {
         std::cout << "Your Nick name : "; 
         std::getline(std::cin, this->_nickname);
+        if(std::cin.eof())
+            exit(0);
     }
     this->_phone_number = "";
     while(this->_phone_number.empty())
