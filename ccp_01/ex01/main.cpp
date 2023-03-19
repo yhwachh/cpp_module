@@ -2,7 +2,7 @@
 
 
 
-int main(int ac, char **av)
+int main(void)
 {
     int i = 0;
     Zombie* Z = zombieHorde(3, "Zombie");

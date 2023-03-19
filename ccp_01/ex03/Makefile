@@ -1,8 +1,8 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = Zombie.cpp main.cpp zombieHorde.cpp
-EXEC = zombieHorde
+SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+EXEC = Fight
 
 all: $(EXEC)
 
@@ -10,7 +10,7 @@ $(EXEC): $(SRC)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 fclean: clean
-	rm -f zombieHorde
+	rm -f Fight
 
 clean:
 	rm -f $(EXEC)
