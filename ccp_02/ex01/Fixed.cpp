@@ -1,65 +1,61 @@
 #include "Fixed.hpp"
 #include <cmath>
 
-Fixed::Fixed()
+#include "Fixed.hpp"
+
+Fixed::Fixed() : _fixe(0) 
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->m_fixe = 0; 
 }
 
-Fixed::Fixed(const Fixed &p)
+Fixed::Fixed(int const _fixe) : _fixe(_fixe << _bits) 
+{
+	std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(float const _fixe) : _fixe(roundf(_fixe * (1 << _bits))) 
+{
+	std::cout << "Float constructor called" << std::endl;
+}
+
+Fixed::Fixed(Fixed const & src) 
 {
 	std::cout << "Copy constructor called" << std::endl;
-	m_fixe = p.getRawBits();
+	*this = src;
 }
 
-Fixed &Fixed::operator=(const Fixed &p)
+Fixed &	Fixed::operator=(Fixed const & src) 
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	m_fixe = p.getRawBits();
+	setRawBits(src.getRawBits());
 	return *this;
 }
 
-Fixed::~Fixed()
+Fixed::~Fixed() 
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(int const fixe)
+int		Fixed::getRawBits( void ) const 
 {
-    std::cout << "Int constructor called" << std::endl;
-	this->m_fixe = fixe << m_bits;
+	return this->_fixe;
 }
 
-Fixed::Fixed(float const fixe)
+void	Fixed::setRawBits( int const _fixe ) 
 {
-    std::cout << "Float constructor called" << std::endl;
-	float pre = 1 << m_bits;
-    this->m_fixe = roundf(fixe * pre);
+	this->_fixe = _fixe;
 }
 
-int Fixed::getRawBits(void) const
+float	Fixed::toFloat( void ) const 
 {
-	return(m_fixe);
+	return (float)this->_fixe / (1 << _bits);
 }
 
-void Fixed::setRawBits(int const raw)
+int		Fixed::toInt( void ) const 
 {
-	m_fixe = raw;
+	return this->_fixe >> _bits;
 }
 
-int Fixed::toInt(void) const {
-    return (m_fixe >> m_bits);
-}
-
-float Fixed::toFloat(void) const {
-    float prec = 1 << m_bits;
-    float nb;
-    nb = (float)m_fixe / prec;
-    return (nb);
-}
-
-std::ostream &operator<<(std::ostream &os, Fixed const &obj)
-{
-	return (os << obj.toFloat());
+std::ostream &	operator<<(std::ostream & out, Fixed const & obj) {
+	return(out << obj.toFloat());
 }

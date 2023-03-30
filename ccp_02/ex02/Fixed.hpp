@@ -4,46 +4,47 @@
 # include <cmath>
 # include <iostream>
 
-class Fixed {
-	private:
-		int					raw;
-		static const int	fractionalBits = 8;
+class Fixed 
+{
+
 	public:
 		Fixed();
+		~Fixed();
 		Fixed(int const raw);
 		Fixed(float const raw);
-		Fixed(Fixed const & src);
-		Fixed &	operator=( Fixed const & src );
-		~Fixed();
-
-		bool	operator>( Fixed const & src ) const;
-		bool	operator<( Fixed const & src ) const;
-		bool	operator>=( Fixed const & src ) const;
-		bool	operator<=( Fixed const & src ) const;
-		bool	operator==( Fixed const & src ) const;
-		bool	operator!=( Fixed const & src ) const;
-
-		Fixed	operator+( Fixed const & src ) const;
-		Fixed	operator-( Fixed const & src ) const;
-		Fixed	operator*( Fixed const & src ) const;
-		Fixed	operator/( Fixed const & src ) const;
-
-		Fixed &	operator++();
+		Fixed(Fixed const &src);
+		Fixed 	&operator=( Fixed const &src );
+		Fixed	operator+( Fixed const &src ) const;
+		Fixed	operator-( Fixed const &src ) const;
+		Fixed	operator*( Fixed const &src ) const;
+		Fixed	operator/( Fixed const &src ) const;
+		Fixed 	&operator++();
 		Fixed	operator++(int);
-		Fixed &	operator--();
+		Fixed 	&operator--();
 		Fixed	operator--(int);
 
-		static Fixed &	min(Fixed & a, Fixed & b);
-		static Fixed &	max(Fixed & a, Fixed & b);
-		static Fixed const &	min(Fixed const & a, Fixed const & b);
-		static Fixed const &	max(Fixed const & a, Fixed const & b);
+		bool	operator>( Fixed const &src ) const;
+		bool	operator>=( Fixed const &src ) const;
+		bool	operator==( Fixed const &src ) const;
+		bool	operator<( Fixed const &src ) const;
+		bool	operator<=( Fixed const &src ) const;
+		bool	operator!=( Fixed const &src ) const;
+
+		static Fixed const &min(Fixed const &src1, Fixed const &src2);
+		static Fixed const &max(Fixed const &src1, Fixed const &src2);
+		static Fixed &min(Fixed &src1, Fixed &src2);
+		static Fixed &max(Fixed &src1, Fixed &src2);
 
 		int		getRawBits( void ) const;
+		int		toInt( void ) const;
 		void	setRawBits( int const raw );
 		float	toFloat( void ) const;
-		int		toInt( void ) const;
+
+	private:
+		int					_fixe;
+		static const int	_bits = 8;
 };
 
-std::ostream &	operator<<(std::ostream & out, Fixed const & src);
+std::ostream &	operator<<(std::ostream & out, Fixed const & obj);
 
 #endif

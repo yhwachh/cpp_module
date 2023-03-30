@@ -4,27 +4,26 @@
 
 #include <iostream>
 
-class Fixed {
-
-    private:
-    int m_fixe;
-    const static int m_bits = 8;
-
+class Fixed 
+{
     public:
-	Fixed();
-    Fixed(const Fixed &p);
-    Fixed &operator=(const Fixed &p);
-    ~Fixed();
-    
-    Fixed(int const fixe);
-    Fixed(float const fixe);
+	    Fixed();
+        ~Fixed();
+        Fixed(const Fixed &p);
+        Fixed &operator=(const Fixed &p);
+        Fixed(int const fixe);
+        Fixed(float const fixe);
 
-	int getRawBits(void) const;
-    void setRawBits(int const raw);
-	float 	toFloat(void) const;
-	int 	toInt(void) const;
+	    int getRawBits(void) const;
+        int 	toInt(void) const;
+        void setRawBits(int const raw);
+	    float 	toFloat(void) const;
+    
+    private:
+        int _fixe;
+        const static int _bits = 8;
 };
 
-std::ostream &operator<<(std::ostream &os, Fixed const &obj);
+std::ostream &operator<<(std::ostream &out, Fixed const &obj);
 
 #endif
