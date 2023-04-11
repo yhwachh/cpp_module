@@ -1,46 +1,30 @@
 #include "Dog.hpp"
 
-/*
- * -------------------------- Constructor -----------------------------
- */
-
-Dog::Dog(void) : Animal()
+Dog::Dog() : Animal()
 {
-	this->type = "Dog";
-	std::cout << "Dog constructor called" << std::endl;
+	this->type = "dog";
+	std::cout << " dog constructor call " << std::endl;
 }
 
-Dog::Dog(const Dog& origin) : Animal(origin)
+Dog::Dog(const Dog& tp) : Animal(tp)
 {
-	this->type = origin.getType();
-	std::cout << "Dog copy constructor called" << std::endl;
+	this->type = tp.getType();
+	std::cout << " dog copy constructor call" << std::endl;
 }
 
-/*
- * -------------------------- Destructor -----------------------------
- */
-
-Dog::~Dog(void)
+Dog::~Dog()
 {
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << " dog destructor call " << std::endl;
 }
 
-/*
- * -------------------------- Operator -----------------------------
- */
-
-Dog& Dog::operator=(const Dog& origin)
+Dog& Dog::operator=(const Dog& tp)
 {
-	if (this != &origin)
-		this->type = origin.getType();
+	if (this != &tp)
+		this->type = tp.getType();
 	return *this;
 }
 
-/*
- * -------------------------- Function -----------------------------
- */
-
 void	Dog::makeSound(void) const
 {
-	std::cout << "Bowwow!" << std::endl;
+	std::cout << " wouf " << std::endl;
 }

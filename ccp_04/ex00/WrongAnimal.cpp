@@ -1,31 +1,19 @@
 #include "WrongAnimal.hpp"
 
-/*
- * -------------------------- Constructor -----------------------------
- */
-
-WrongAnimal::WrongAnimal(void) : type("WrongAnimal")
+WrongAnimal::WrongAnimal() : type("wrong_animal")
 {
-	std::cout << "WrongAnimal constructor called" << std::endl;
+	std::cout << " wrong animal constructor call " << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& origin) : type(origin.getType())
 {
-	std::cout << "WrongAnimal copy constructor called" << std::endl;
+	std::cout << " wrong animal copy constructor call " << std::endl;
 }
-
-/*
- * -------------------------- Destructor -----------------------------
- */
 
 WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "WrongAnimal destructor called" << std::endl;
+	std::cout << " wrong animal destructor call " << std::endl;
 }
-
-/*
- * -------------------------- Operator -----------------------------
- */
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& origin)
 {
@@ -34,13 +22,9 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& origin)
 	return *this;
 }
 
-/*
- * -------------------------- Function -----------------------------
- */
-
 void	WrongAnimal::makeSound(void) const
 {
-	std::cout << "This instance is WrongAnimal" << std::endl;
+	std::cout << " wrong animal instance " << std::endl;
 }
 
 std::string	WrongAnimal::getType(void) const

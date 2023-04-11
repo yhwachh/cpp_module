@@ -1,55 +1,39 @@
 #include "Cat.hpp"
 
-/*
- * -------------------------- Constructor -----------------------------
- */
-
-Cat::Cat(void) : Animal()
+Cat::Cat() : Animal()
 {
-	this->type = "Cat";
+	std::cout << " cat constructor call " << std::endl;
+	this->type = "cat";
 	this->brain = new Brain();
-	std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& origin) : Animal(origin)
+Cat::Cat(const Cat& tp) : Animal(tp)
 {
-	this->type = origin.getType();
+	std::cout << " cat copy constructor call " << std::endl;
+	this->type = tp.getType();
 	this->brain = new Brain();
-	*this->brain = *origin.getBrain();
-	std::cout << "Cat copy constructor called" << std::endl;
+	*this->brain = *tp.getBrain();
 }
 
-/*
- * -------------------------- Destructor -----------------------------
- */
-
-Cat::~Cat(void)
+Cat::~Cat()
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << " cat destructor call " << std::endl;
 	delete this->brain;
 }
 
-/*
- * -------------------------- Operator -----------------------------
- */
-
-Cat& Cat::operator=(const Cat& origin)
+Cat& Cat::operator=(const Cat& tp)
 {
-	if (this != &origin)
+	if (this != &tp)
 	{
-		this->type = origin.getType();
-		*this->brain = *origin.getBrain();
+		this->type = tp.getType();
+		*this->brain = *tp.getBrain();
 	}
 	return *this;
 }
 
-/*
- * -------------------------- Function -----------------------------
- */
-
 void	Cat::makeSound(void) const
 {
-	std::cout << "Meow!" << std::endl;
+	std::cout << " miou " << std::endl;
 }
 
 Brain*	Cat::getBrain(void) const

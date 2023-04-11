@@ -5,16 +5,17 @@
 
 class WrongAnimal
 {
+	public:
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& tp);
+		~WrongAnimal(void);
+		WrongAnimal& operator=(const WrongAnimal& tp);
+		void makeSound() const;
+		std::string	getType(void) const;
+
 	protected:
 		std::string type;
 
-	public:
-		WrongAnimal(void);
-		WrongAnimal(const WrongAnimal& origin);
-		~WrongAnimal(void);
-		WrongAnimal& operator=(const WrongAnimal& origin);
-		void makeSound(void) const;
-		std::string	getType(void) const;
 };
 
 #endif

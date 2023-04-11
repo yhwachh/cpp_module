@@ -1,15 +1,15 @@
 #ifndef CAT_HPP
-# define CAT_HPP
+#define CAT_HPP
 
 # include "Animal.hpp"
 
 class Cat : public Animal
 {
 	public:
-		Cat(void);
-		Cat(const Cat& origin);
-		~Cat(void);
-		Cat& operator=(const Cat& origin);
+		Cat();
+		Cat(const Cat& tp);
+		~Cat();
+		Cat& operator=(const Cat& tp);
 		void makeSound(void) const;
 };
 

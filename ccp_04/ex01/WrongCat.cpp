@@ -1,46 +1,30 @@
 #include "WrongCat.hpp"
 
-/*
- * -------------------------- Constructor -----------------------------
- */
-
-WrongCat::WrongCat(void) : WrongAnimal()
+WrongCat::WrongCat() : WrongAnimal()
 {
-	this->type = "WrongCat";
-	std::cout << "WrongCat constructor called" << std::endl;
+	this->type = "wrong_cat";
+	std::cout << " wrong cat constructor call" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& origin) : WrongAnimal(origin)
+WrongCat::WrongCat(const WrongCat& tp) : WrongAnimal(tp)
 {
-	this->type = origin.getType();
-	std::cout << "WrongCat copy constructor called" << std::endl;
+	this->type = tp.getType();
+	std::cout << " wrong cat copy constructor call " << std::endl;
 }
 
-/*
- * -------------------------- Destructor -----------------------------
- */
-
-WrongCat::~WrongCat(void)
+WrongCat::~WrongCat()
 {
-	std::cout << "WrongCat destructor called" << std::endl;
+	std::cout << " wrong cat destructor call " << std::endl;
 }
 
-/*
- * -------------------------- Operator -----------------------------
- */
-
-WrongCat& WrongCat::operator=(const WrongCat& origin)
+WrongCat& WrongCat::operator=(const WrongCat& tp)
 {
-	if (this != &origin)
-		this->type = origin.getType();
+	if (this != &tp)
+		this->type = tp.getType();
 	return *this;
 }
 
-/*
- * -------------------------- Function -----------------------------
- */
-
 void	WrongCat::makeSound(void) const
 {
-	std::cout << "Meow...?" << std::endl;
+	std::cout << " miou ? " << std::endl;
 }

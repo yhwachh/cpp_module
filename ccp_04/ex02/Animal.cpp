@@ -1,42 +1,26 @@
 #include "Animal.hpp"
 
-/*
- * -------------------------- Constructor -----------------------------
- */
-
-Animal::Animal(void) : type("Animal")
+Animal::Animal() : type("animal")
 {
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << " animal constructor call " << std::endl;
 }
 
-Animal::Animal(const Animal& origin) : type(origin.getType())
+Animal::Animal(const Animal& tp) : type(tp.getType())
 {
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << " animal copy constructor call " << std::endl;
 }
 
-/*
- * -------------------------- Destructor -----------------------------
- */
-
-Animal::~Animal(void)
+Animal::~Animal()
 {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << " animal destructor call " << std::endl;
 }
 
-/*
- * -------------------------- Operator -----------------------------
- */
-
-Animal& Animal::operator=(const Animal& origin)
+Animal& Animal::operator=(const Animal& tp)
 {
-	if (this != &origin)
-		this->type = origin.getType();
+	if (this != &tp)
+		this->type = tp.getType();
 	return *this;
 }
-
-/*
- * -------------------------- Function -----------------------------
- */
 
 std::string	Animal::getType(void) const
 {

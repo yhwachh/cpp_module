@@ -17,34 +17,19 @@ int main()
 	delete j;//should not create a leak
 	delete i;
 	
-	std::cout << "=======================================" << std::endl;
+	std::cout << "===========================================" << std::endl;
 
-	const int	arrSize = 6;
-	Animal*	arr[arrSize];
-	for (int i = 0; i < arrSize; i++)
+	const int	size = 6;
+	Animal*	arg[size];
+	for (int i = 0; i < size; i++)
 	{
-		if (i < arrSize / 2)
-			arr[i] = new Dog();
+		if (i < size / 2)
+			arg[i] = new Dog();
 		else
-			arr[i] = new Cat();
+			arg[i] = new Cat();
 	}
-
-	std::cout << "=======================================" << std::endl;
-
-	for (int i = 0; i < arrSize; i++)
-		delete arr[i];
-
-	std::cout << "=======================================" << std::endl;
-
-	Cat* cat = new Cat();
-	Cat kitty = Cat();
-	cat->getBrain()->setIdea("happy", 0);
-	std::cout << "kitty 0 idea: " << kitty.getBrain()->getIdea(0) << std::endl;
-	kitty = *cat;
-	std::cout << "kitty 0 idea: " << kitty.getBrain()->getIdea(0) << std::endl;
-	delete cat;
-	std::cout << "cat delete!!"<< std::endl;
-	std::cout << "kitty 0 idea: " << kitty.getBrain()->getIdea(0) << std::endl;
+	for (int i = 0; i < size; i++)
+		delete arg[i];
 
 	return 0;
 }
