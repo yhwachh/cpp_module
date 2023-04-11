@@ -20,6 +20,7 @@ int main()
 	std::cout << "===========================================" << std::endl;
 
 	const int	size = 6;
+	
 	Animal*	arg[size];
 	for (int i = 0; i < size; i++)
 	{
