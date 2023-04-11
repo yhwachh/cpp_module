@@ -1,36 +1,58 @@
 #include "Cat.hpp"
 
-Cat::Cat()
+/*
+ * -------------------------- Constructor -----------------------------
+ */
+
+Cat::Cat(void) : Animal()
 {
-    brain = new Brain();
-    std::cout << " cat constructor call " << std::endl;
+	this->type = "Cat";
+	this->brain = new Brain();
+	std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::~Cat()
+Cat::Cat(const Cat& origin) : Animal(origin)
 {
-    delete brain;
-    std::cout << " cat destructor call " << std::endl;
+	this->type = origin.getType();
+	this->brain = new Brain();
+	*this->brain = *origin.getBrain();
+	std::cout << "Cat copy constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &tp)
+/*
+ * -------------------------- Destructor -----------------------------
+ */
+
+Cat::~Cat(void)
 {
-    this->type = tp.type;
-    std::cout << " cat copy constructor call " << std::endl;
+	std::cout << "Cat destructor called" << std::endl;
+	delete this->brain;
 }
 
-Cat & Cat::operator=(Cat &tp)
+/*
+ * -------------------------- Operator -----------------------------
+ */
+
+Cat& Cat::operator=(const Cat& origin)
 {
-    this->type = tp.type;
-    std::cout << " cat operator call " << std::endl;
-    return *this;
+	if (this != &origin)
+	{
+		this->type = origin.getType();
+		*this->brain = *origin.getBrain();
+	}
+	return *this;
 }
 
-std::string Cat::gettype(void)
+/*
+ * -------------------------- Function -----------------------------
+ */
+
+void	Cat::makeSound(void) const
 {
-    return (this->type);
+	std::cout << "Meow!" << std::endl;
 }
 
-void Cat::makesound(void)
+Brain*	Cat::getBrain(void) const
 {
-    std::cout << " Miaouuu " << std::endl;
+	return this->brain;	
 }

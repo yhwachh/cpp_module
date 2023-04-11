@@ -1,36 +1,58 @@
 #include "Dog.hpp"
 
-Dog::Dog()
+/*
+ * -------------------------- Constructor -----------------------------
+ */
+
+Dog::Dog(void) : Animal()
 {
-    brain = new Brain();
-    std::cout << " dog constructor call " << std::endl;
+	this->type = "Dog";
+	this->brain = new Brain();
+	std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::~Dog()
+Dog::Dog(const Dog& origin) : Animal(origin)
 {
-    delete brain;
-    std::cout << " dog destructor call " << std::endl;
+	this->type = origin.getType();
+	this->brain = new Brain();
+	*this->brain = *origin.getBrain();
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
-Dog::Dog(Dog const &src)
+/*
+ * -------------------------- Destructor -----------------------------
+ */
+
+Dog::~Dog(void)
 {
-    this->type = src.type;
-    std::cout << " copy constructor dog call " << std::endl;
+	std::cout << "Dog destructor called" << std::endl;
+	delete this->brain;
 }
 
-Dog & Dog::operator=(Dog const &src)
+/*
+ * -------------------------- Operator -----------------------------
+ */
+
+Dog& Dog::operator=(const Dog& origin)
 {
-    std::cout << " dog operator call " << std::endl;
-    this->type = src.type;
-    return *this;
+	if (this != &origin)
+	{
+		this->type = origin.getType();
+		*this->brain = *origin.getBrain();
+	}
+	return *this;
 }
 
-std::string Dog::gettype(void)
+/*
+ * -------------------------- Function -----------------------------
+ */
+
+void	Dog::makeSound(void) const
 {
-    return(this->type);
+	std::cout << "Bowwow!" << std::endl;
 }
 
-void Dog::makesound(void)
+Brain*	Dog::getBrain(void) const
 {
-    std::cout << " wouf " << std::endl; 
+	return this->brain;	
 }

@@ -1,25 +1,55 @@
 #include "Brain.hpp"
 
-Brain::Brain()
+/*
+ * -------------------------- Constructor -----------------------------
+ */
+
+Brain::Brain(void)
 {
-	std::cout << " brain constructor call " << std::endl;
+	std::cout << "Brain constructor called" << std::endl;
 }
 
-Brain::~Brain()
+Brain::Brain(const Brain& origin)
 {
-	std::cout << " brain Destructor call " << std::endl;
+	for (int i = 0; i < 100; i++)
+		this->ideas[i] = origin.ideas[i];
+	std::cout << "Brain copy constructor called" << std::endl;
 }
 
-Brain::Brain(const Brain &tp)
+/*
+ * -------------------------- Destructor -----------------------------
+ */
+
+Brain::~Brain(void)
 {
-	for(int i = 0; i < 100; i++)
-		Ideas[i] = tp.Ideas[i];
-	std::cout << " brain copy constructor call " << std::endl;
+	std::cout << "Brain destructor called" << std::endl;
 }
 
-Brain & Brain::operator=(const Brain &tp)
+/*
+ * -------------------------- Operator -----------------------------
+ */
+
+Brain& Brain::operator=(const Brain& origin)
 {
-	for(int i = 0; i < 100; i++)
-	this->Ideas[i] = tp.Ideas[i];
+	if (this != &origin)
+	{
+		Brain brain = Brain();
+		for (int i = 0; i < 100; i++)
+			this->ideas[i] = origin.ideas[i];
+	}
 	return *this;
+}
+
+/*
+ * -------------------------- Function -----------------------------
+ */
+
+std::string	Brain::getIdea(int i) const
+{
+	return this->ideas[i];
+}
+
+void	Brain::setIdea(std::string idea, int i)
+{
+	this->ideas[i] = idea;
 }

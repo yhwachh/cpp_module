@@ -1,34 +1,49 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal ::WrongAnimal()
+/*
+ * -------------------------- Constructor -----------------------------
+ */
+
+WrongAnimal::WrongAnimal(void) : type("WrongAnimal")
 {
-    std::cout << " wrong animal constructor call " << std::endl;
+	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
-WrongAnimal::~WrongAnimal()
+WrongAnimal::WrongAnimal(const WrongAnimal& origin) : type(origin.getType())
 {
-    std::cout << " wrong animal destructor call " << std::endl;
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &tp)
+/*
+ * -------------------------- Destructor -----------------------------
+ */
+
+WrongAnimal::~WrongAnimal(void)
 {
-    type = tp.type;
-    std::cout << " wrong animal copy constrcutor call " << std::endl;
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
-WrongAnimal & WrongAnimal :: operator=(WrongAnimal &tp)
+/*
+ * -------------------------- Operator -----------------------------
+ */
+
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& origin)
 {
-    std::cout << " wrong animal operator call " << std::endl;
-    this->type = tp.type;
-    return *this;
+	if (this != &origin)
+		this->type = origin.getType();
+	return *this;
 }
 
-std::string WrongAnimal:: gettype(void) const
+/*
+ * -------------------------- Function -----------------------------
+ */
+
+void	WrongAnimal::makeSound(void) const
 {
-    return(this->type);
+	std::cout << "This instance is WrongAnimal" << std::endl;
 }
 
-void WrongAnimal::makesound(void)
+std::string	WrongAnimal::getType(void) const
 {
-    std::cout << " wrong animal OoO " << std::endl;
+	return this->type;
 }

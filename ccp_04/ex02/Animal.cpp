@@ -1,36 +1,44 @@
 #include "Animal.hpp"
 
-Animal ::Animal()
+/*
+ * -------------------------- Constructor -----------------------------
+ */
+
+Animal::Animal(void) : type("Animal")
 {
-    std::cout << " animal constructor call " << std::endl;
+	std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal::~Animal()
+Animal::Animal(const Animal& origin) : type(origin.getType())
 {
-    std::cout << " animal destructor call " << std::endl;
+	std::cout << "Animal copy constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal &tp)
+/*
+ * -------------------------- Destructor -----------------------------
+ */
+
+Animal::~Animal(void)
 {
-    type = tp.type;
-    std::cout << " Copy animal constrcutor call " << std::endl;
+	std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal & Animal ::operator=(Animal &tp)
+/*
+ * -------------------------- Operator -----------------------------
+ */
+
+Animal& Animal::operator=(const Animal& origin)
 {
-    std::cout << " animal operator call " << std::endl;
-    this->type = tp.type;
-    return *this;
+	if (this != &origin)
+		this->type = origin.getType();
+	return *this;
 }
 
-std::string Animal:: gettype(void) const
-{
-    return(this->type);
-}
+/*
+ * -------------------------- Function -----------------------------
+ */
 
-void Animal::makesound(void)
+std::string	Animal::getType(void) const
 {
-    std::cout << " (\\__/)  " << std::endl;
-    std::cout << " ( ='.'=) " << std::endl;
-    std::cout << " ('')_('') " << std::endl;
+	return this->type;
 }
