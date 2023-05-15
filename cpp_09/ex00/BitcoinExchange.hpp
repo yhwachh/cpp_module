@@ -1,10 +1,12 @@
-#ifndef BITCOINEXCHAGE_HPP
-#define BITCOINEXCHAGE_HPP
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
 #include <iostream>
 #include <map>
 #include <string>
-#include <fsteram>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 
 class Bitcoin
@@ -17,7 +19,10 @@ public:
     Bitcoin &operator=(const Bitcoin &copy);
     ~Bitcoin ();
 
-    void    OpenReadData(std::string database);
+    void    openReadData(std::string database);
+    void    inputData(std::string input);
+    int    corectdate(std::string date);
+    float    finddate(std::string date);
 };
 
 

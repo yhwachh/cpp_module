@@ -3,9 +3,9 @@
 
 
 
-int main(int av, char **av)
+int main(int ac, char **av)
 {
-    if(av != 2)
+    if(ac != 2)
     {
         std::cout << "./btc file.txt" << std::endl;
         return(1);
@@ -13,7 +13,8 @@ int main(int av, char **av)
 
     Bitcoin btc;
 
-    btc.OpenReadData("data.csv");
+    btc.openReadData("data.csv");
+    btc.inputData(av[1]);
 
 
 
