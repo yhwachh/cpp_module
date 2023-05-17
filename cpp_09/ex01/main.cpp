@@ -12,8 +12,6 @@ int main(int ac, char **av)
     float result  = rpn.evaluateExpression(av[1]);
 
     std::cout << result << std::endl;
-
-
     
     return 0;
 }

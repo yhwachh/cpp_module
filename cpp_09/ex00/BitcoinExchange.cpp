@@ -106,12 +106,12 @@ void    Bitcoin::inputData(std::string input)
 
         float number = std::stof (valeur.c_str());
 
-        if (number < 0)
+        if (len == -1 || corectdate(cle))
+			std::cout << "Error: bad input => " << cle << std::endl;
+        else if (number < 0)
 			std::cout << "Error: not a positive number." << std::endl;
 		else if (number > 1000)
 			std::cout << "Error: too large a number." << std::endl;
-		else if (len == -1 || corectdate(cle))
-			std::cout << "Error: bad input => " << cle << std::endl;
 		else
 			std::cout << cle << " => " << valeur << " = " << std::fixed << std::setprecision(2) << number * finddate(cle) << std::endl;
 
@@ -143,13 +143,13 @@ float Bitcoin::finddate(std::string date)
 	std::string month = date.substr(5, 2);
 	std::string day = date.substr(8,9);
 
-	for(it=_database.begin(); it!=_database.end(); ++it)
+	for(it = _database.begin(); it != _database.end(); ++it)
 	{
 		if (date == it->first)
 			return (it->second);
    	}
 
-	for(it=_database.begin();it!=_database.end();++it)
+	for(it = _database.begin();it != _database.end(); ++it)
 	{
 		if (year == it->first.substr(0,4) && month == it->first.substr(5,2))
 		{

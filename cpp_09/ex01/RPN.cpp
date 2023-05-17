@@ -17,35 +17,40 @@ RPN &RPN::operator=(const RPN &copy)
 }
 
 // Fonction pour évaluer une expression en notation polonaise
-float RPN::evaluateExpression(std::string expression) 
+float RPN::evaluateExpression(std::string arg) 
 {
-    std::stack<float> operandStack;
-    std::istringstream iss(expression);
+    std::stack<float> stack;
+    std::istringstream iss(arg);
     std::string token;
     
     while (iss >> token) 
     {
         if (token == "+" || token == "-" || token == "*" || token == "/") 
         {
-            float operand2 = operandStack.top();
-            operandStack.pop();
-            float operand1 = operandStack.top();
-            operandStack.pop();
+            if (token != "+" || token != "-" || token != "*" || token != "/")
+            {
+                std::cout << "Error" << std::endl;
+                return(1);
+            }
+            float operand2 = stack.top();
+            stack.pop();
+            float operand1 = stack.top();
+            stack.pop();
             
             if (token == "+")
-                operandStack.push(operand1 + operand2);
+                stack.push(operand1 + operand2);
             else if (token == "-")
-                operandStack.push(operand1 - operand2);
+                stack.push(operand1 - operand2);
             else if (token == "*")
-                operandStack.push(operand1 * operand2);
+                stack.push(operand1 * operand2);
             else if (token == "/")
-                operandStack.push(operand1 / operand2);
+                stack.push(operand1 / operand2);
         } 
         else 
         {
             float operand = std::atof(token.c_str());
-            operandStack.push(operand);
+            stack.push(operand);
         }
     }
-    return operandStack.top();
+    return stack.top();
 }

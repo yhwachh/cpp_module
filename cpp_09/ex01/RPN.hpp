@@ -20,7 +20,7 @@ public:
     RPN &operator=(const RPN &copy);
     ~RPN();
 
-    float evaluateExpression(std::string expression);
+    float evaluateExpression(std::string arg);
 };
 
 #endif
