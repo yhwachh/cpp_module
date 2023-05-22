@@ -13,7 +13,5 @@ int main(int ac, char **av)
     btc.openReadData("data.csv");
     btc.inputData(av[1]);
 
-
-
     return (0);
 }

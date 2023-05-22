@@ -17,7 +17,6 @@ Bitcoin &Bitcoin::operator=(const Bitcoin &copy)
     return(*this);
 }
 
-
 /*
 void Bitcoin::inputData(std::string input)
 {
@@ -78,7 +77,8 @@ void    Bitcoin::openReadData(std::string database)
     while(getline(file,line))
     {
         int len = line.find(",");
-        std::string valeur = line.substr(len + 1); // apres la ,
+        len = len + 1;
+        std::string valeur = line.substr(len); // apres la ,
         std::string cle = line.substr(0, len);// avons la ,
         _database.insert(make_pair(cle, std::atof(valeur.c_str())));
     }
@@ -153,9 +153,9 @@ float Bitcoin::finddate(std::string date)
 	{
 		if (year == it->first.substr(0,4) && month == it->first.substr(5,2))
 		{
-			float float1 = std::stof(it->first.substr(8,9));
-			float float2 = std::stof(day);
-			if (float1 > float2)
+			float flt = std::stof(it->first.substr(8,9));
+			float flt1 = std::stof(day);
+			if (flt > flt1)
 			{
 				it--;
 				return (it->second);

@@ -59,6 +59,28 @@ void bubbleSort(std::deque<T>& deque) {
     }
 }
 
+template <typename T>
+void bubbleSort2(std::vector<T>& vector) {
+    int n = vector.size();
+    bool swapped;
+
+    for (int i = 0; i < n - 1; ++i) {
+        swapped = false;
+
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (vector[j] > vector[j + 1]) {
+                std::swap(vector[j], vector[j + 1]);
+                swapped = true;
+            }
+        }
+
+        if (!swapped) {
+            // Le tableau est déjà trié, donc nous pouvons arrêter le tri.
+            break;
+        }
+    }
+}
+
 void PmergeMe::sortValue(int argc)
 {
 	std::cout << "Before: ";
@@ -67,7 +89,7 @@ void PmergeMe::sortValue(int argc)
 	std::cout << std::endl;
 
 	std::clock_t start1 = std::clock();
-	std::sort(vector.begin(), vector.end());
+	bubbleSort2(vector);
 	std::clock_t end1 = std::clock();
 
 	std::clock_t start2 = std::clock();
