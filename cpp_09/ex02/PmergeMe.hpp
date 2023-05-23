@@ -14,13 +14,12 @@ class PmergeMe
 
 	public:
 	PmergeMe();
-	PmergeMe(const PmergeMe &p);
-	PmergeMe &operator=(const PmergeMe &p);
+	PmergeMe(const PmergeMe &copy);
+	PmergeMe &operator=(const PmergeMe &copy);
 	~PmergeMe();
 	
-	void insertValue(char **argv);
-	void sortValue(int argc);
-	int  checkError(std::string argv);
+	void manipValu(char **av);
+	void sortValue(int ac);
 };
 
 #endif

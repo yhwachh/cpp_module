@@ -6,19 +6,24 @@ int main(int ac, char **av)
 
 	if (ac == 1)
 	{
-		std::cout << "Error: Program need Arguments!" << std::endl;
-		exit(0);
+		std::cout << "./PmergeMe arg" << std::endl;
+		return (-1);
 	}
 	
 	for(int i=1;av[i];i++)
 	{
-		if (PmergeMe.checkError(av[i]))
+		for(int j = 0; av[i][j]; j++)
 		{
-			std::cout << "Error" << std::endl;
-			exit(0);
+			if (isdigit(av[i][j]) == false)
+			{
+				std::cout << "Error" << std::endl;
+				return (-1);
+			}
 		}
 	}
 
-	PmergeMe.insertValue(av);
+	PmergeMe.manipValu(av);
 	PmergeMe.sortValue(ac);
+
+	return (0);
 }

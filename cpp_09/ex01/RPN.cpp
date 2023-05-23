@@ -16,41 +16,68 @@ RPN &RPN::operator=(const RPN &copy)
     return(*this);
 }
 
-// Fonction pour évaluer une expression en notation polonaise
-float RPN::evaluateExpression(std::string arg) 
+float RPN::evaluateExpression(std::string arg)
 {
     std::stack<float> stack;
     std::istringstream iss(arg);
     std::string token;
-    
-    while (iss >> token) 
+
+    try
     {
-        if (token == "+" || token == "-" || token == "*" || token == "/") 
+        while (iss >> token)
         {
-            if (token != "+" || token != "-" || token != "*" || token != "/")
+            if (token == "+" || token == "-" || token == "*" || token == "/")
             {
-                std::cout << "Error" << std::endl;
-                return(1);
+                if (stack.size() < 2)
+                {
+                    throw std::runtime_error("Erreur : Pas assez d'opérandes pour l'opération ");
+                }
+
+                float operand2 = stack.top();
+                stack.pop();
+                float operand1 = stack.top();
+                stack.pop();
+
+                if (token == "+")
+                    stack.push(operand1 + operand2);
+                else if (token == "-")
+                    stack.push(operand1 - operand2);
+                else if (token == "*")
+                    stack.push(operand1 * operand2);
+                else if (token == "/")
+                {
+                    if (operand2 == 0)
+                    {
+                        throw std::runtime_error("Erreur : Division par zéro");
+                    }
+                    stack.push(operand1 / operand2);
+                }
             }
-            float operand2 = stack.top();
-            stack.pop();
-            float operand1 = stack.top();
-            stack.pop();
-            
-            if (token == "+")
-                stack.push(operand1 + operand2);
-            else if (token == "-")
-                stack.push(operand1 - operand2);
-            else if (token == "*")
-                stack.push(operand1 * operand2);
-            else if (token == "/")
-                stack.push(operand1 / operand2);
-        } 
-        else 
-        {
-            float operand = std::atof(token.c_str());
-            stack.push(operand);
+            else
+            {
+                try
+                {
+                    float operand = std::stof(token);
+                    stack.push(operand);
+                }
+                catch (const std::exception& e)
+                {
+                    throw std::runtime_error("Erreur : Opérande invalide ");
+                }
+            }
         }
     }
-    return stack.top();
+    catch (const std::exception& e)
+    {
+        std::cout << "Erreur d'évaluation : " << e.what() << std::endl;
+        return 0;
+    }
+
+    if (stack.size() == 1)
+        return stack.top();
+    else
+    {
+        std::cout << "Erreur d'évaluation : Expression invalide" << std::endl;
+        return 0;
+    }
 }
